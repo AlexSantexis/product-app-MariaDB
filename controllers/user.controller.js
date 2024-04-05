@@ -3,7 +3,7 @@ const userService = require("../services/user.services");
 exports.findAll = async (req, res) => {
   console.log("Find all users");
   try {
-    const result = userService.findAll();
+    const result = await userService.findAll();
     res.status(200).json({ data: result });
     console.log("Success in reading all users");
   } catch (err) {
@@ -18,7 +18,7 @@ exports.findOne = async (req, res) => {
   try {
     const result = await userService.findOne(id);
     res.status(200).json({ data: result });
-    console.log("Succes in retrieving user");
+    console.log("Success in retrieving user");
   } catch (err) {
     res.status(404).json({ data: err });
     console.log("Problem in retrieving user");
@@ -54,7 +54,7 @@ exports.create = async (req, res) => {
 exports.delete = async (req, res) => {
   const id = req.params.id;
   try {
-    const result = userService.delete(id);
+    const result = await userService.deleteUser(id);
     res.status(200).json({ data: result });
     console.log("Deletion of user succeed");
   } catch (err) {
