@@ -1,5 +1,7 @@
 require("dotenv").config();
 const { DataSource } = require("typeorm");
+const { UserEntity } = require("./model/users");
+const { ProductEntity } = require("./model/products");
 
 const appDataSource = new DataSource({
   type: "mariadb",
@@ -9,6 +11,7 @@ const appDataSource = new DataSource({
   password: process.env.PASSWORD,
   database: process.env.DATABASE,
   synchronize: true,
+  entities: [UserEntity, ProductEntity],
 });
 
 appDataSource
