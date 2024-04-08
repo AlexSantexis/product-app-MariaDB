@@ -1,4 +1,4 @@
-// const productService = require("../service");
+const productService = require("../services/product.services");
 
 exports.findAll = async (req, res) => {
   try {
@@ -26,17 +26,10 @@ exports.findOne = async (req, res) => {
 };
 
 exports.create = async (req, res) => {
-  const name = req.body.name;
-  const cost = req.body.cost;
-  const description = req.body.description;
-  const quantity = req.body.quantity;
+  const data = req.body;
+  console.log("Insert new product");
   try {
-    const result = await productService.create(
-      name,
-      cost,
-      description,
-      quantity
-    );
+    const result = await productService.create(data);
     res.status(200).json({ data: result });
     console.log("Success in inserting product");
   } catch (err) {

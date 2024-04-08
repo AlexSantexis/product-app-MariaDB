@@ -1,6 +1,6 @@
-const { JoinTable } = require("typeorm");
 
 const EntitySchema = require("typeorm").EntitySchema;
+
 class User {
   constructor(id, username, password, name, surname, email, address, phone) {
     this.id = id;
@@ -43,14 +43,6 @@ const UserEntity = new EntitySchema({
     },
     password: {
       type: "varchar",
-    },
-  },
-  relations: {
-    products: {
-      target: "Product",
-      type: "many-to-many",
-      JoinTable: true,
-      cascade: true,
     },
   },
 });

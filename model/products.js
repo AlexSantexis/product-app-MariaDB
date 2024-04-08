@@ -1,13 +1,16 @@
+
+
 const EntitySchema = require("typeorm").EntitySchema;
-class Product {
-  constructor(id, name, cost, description, quantity) {
-    this.id = id;
-    this.name = name;
-    this.cost = cost;
-    this.description = description;
-    this.quantity = quantity;
-  }
-}
+
+// class Product {
+//   constructor(id, name, cost, description, quantity) {
+//     this.id = id;
+//     this.name = name;
+//     this.cost = cost;
+//     this.description = description;
+//     this.quantity = quantity;
+//   }
+// }
 
 const ProductEntity = new EntitySchema({
   name: "Product",
@@ -29,6 +32,14 @@ const ProductEntity = new EntitySchema({
     },
     quantity: {
       type: "int",
+    },
+  },
+  relations: {
+    users: {
+      target: "User",
+      type: "many-to-many",
+      joinTable: true,
+      cascade: true,
     },
   },
 });
